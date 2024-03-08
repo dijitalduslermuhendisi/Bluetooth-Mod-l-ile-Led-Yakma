@@ -1,0 +1,46 @@
+#include<SoftwareSerial.h>
+
+SoftwareSerial bluetooth(10, 11);
+
+int ledPin1 = 2;
+int ledPin2= 3;
+int ledPin3= 4;
+
+
+void setup() {
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+  pinMode(ledPin1, OUTPUT);
+  pinMode(ledPin2, OUTPUT);
+  pinMode(ledPin3, OUTPUT);
+  
+}
+
+void loop() {
+  if (bluetooth.available()){
+     char veri = bluetooth.read();
+     Serial.println("Bluetooth' tan gelen veri: ");
+     Serial.println(veri);
+
+  if (veri == 'a'){
+     digitalWrite(ledPin1, HIGH);
+    }   else if (veri == 'b'){
+       digitalWrite(ledPin1, LOW);
+       
+      }
+
+  if (veri == 'c'){
+     digitalWrite(ledPin2, HIGH);
+     
+    }    else if (veri == 'd'){
+        digitalWrite(ledPin2, LOW);
+      }
+
+  if (veri == 'e'){
+     digitalWrite(ledPin3, HIGH);
+     
+    }    else if(veri == 'f'){
+       digitalWrite(ledPin3, LOW);
+      }
+    }
+}
